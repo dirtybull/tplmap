@@ -4,9 +4,12 @@ from core import checks
 from core.channel import Channel
 from utils.loggers import log
 import traceback
+import utils.config
+import os
 
 version = '0.5'
 
+#DEBUG: python2 -m debugpy --listen 5678 --wait-for-client ./tplmap.py args...
 def main():
     
     args = vars(cliparser.options)
@@ -30,3 +33,5 @@ if __name__ == '__main__':
     except Exception as e:
         log.critical('Exiting: %s' % e)
         log.debug(traceback.format_exc())
+        log_path = os.path.join(utils.config.base_path, 'tplmap.log')
+        print('Refer to %s for more details.' % log_path)
